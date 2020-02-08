@@ -10,3 +10,5 @@ A language designed to be used in Irish, it will have the same functionality as 
 extensive object orientated and c++ like features in future iterations
 
 It is designed to learn more about Irish, Golang, coding, interpreters and compilers
+
+Shane
