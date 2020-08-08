@@ -7,21 +7,21 @@ import (
 )
 
 func TestNextToken(t *testing.T) {
-	input := `let five = 5;
-let ten = 10;
+	input := `bosca cuig = 5;
+bosca deich = 10;
 
-let add = fn(x, y) {
+bosca cuir = fm(x, y) {
   x + y;
 };
 
-let result = add(five, ten);
+bosca toradh = cuir(cuig, deich);
 !-/*5;
 5 < 10 > 5;
 
-if (5 < 10) {
-	return true;
-} else {
-	return false;
+do (5 < 10) {
+	tabhair ceart;
+} eile {
+	tabhair falsa;
 }
 
 10 == 10;
@@ -32,20 +32,20 @@ if (5 < 10) {
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
-		{token.LET, "let"},
-		{token.IDENT, "five"},
+		{token.BOSCA, "bosca"},
+		{token.IDENT, "cuig"},
 		{token.ASSIGN, "="},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
-		{token.LET, "let"},
-		{token.IDENT, "ten"},
+		{token.BOSCA, "bosca"},
+		{token.IDENT, "deich"},
 		{token.ASSIGN, "="},
 		{token.INT, "10"},
 		{token.SEMICOLON, ";"},
-		{token.LET, "let"},
-		{token.IDENT, "add"},
+		{token.BOSCA, "bosca"},
+		{token.IDENT, "cuir"},
 		{token.ASSIGN, "="},
-		{token.FUNCTION, "fn"},
+		{token.FEIDHM, "fm"},
 		{token.LPAREN, "("},
 		{token.IDENT, "x"},
 		{token.COMMA, ","},
@@ -58,14 +58,14 @@ if (5 < 10) {
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.SEMICOLON, ";"},
-		{token.LET, "let"},
-		{token.IDENT, "result"},
+		{token.BOSCA, "bosca"},
+		{token.IDENT, "toradh"},
 		{token.ASSIGN, "="},
-		{token.IDENT, "add"},
+		{token.IDENT, "cuir"},
 		{token.LPAREN, "("},
-		{token.IDENT, "five"},
+		{token.IDENT, "cuig"},
 		{token.COMMA, ","},
-		{token.IDENT, "ten"},
+		{token.IDENT, "deich"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
 		{token.BANG, "!"},
@@ -80,21 +80,21 @@ if (5 < 10) {
 		{token.GT, ">"},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
-		{token.IF, "if"},
+		{token.DO, "do"},
 		{token.LPAREN, "("},
 		{token.INT, "5"},
 		{token.LT, "<"},
 		{token.INT, "10"},
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
-		{token.RETURN, "return"},
-		{token.TRUE, "true"},
+		{token.TABHAIR, "tabhair"},
+		{token.CEART, "ceart"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
-		{token.ELSE, "else"},
+		{token.EILE, "eile"},
 		{token.LBRACE, "{"},
-		{token.RETURN, "return"},
-		{token.FALSE, "false"},
+		{token.TABHAIR, "tabhair"},
+		{token.FALSA, "falsa"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.INT, "10"},
