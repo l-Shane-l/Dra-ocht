@@ -1,0 +1,14 @@
+seoladh fibonacci = obair(x) {
+  nuair (x == 0) {
+    0
+  } eile {
+  nuair (x == 1){
+  1
+  } eile {
+   fibonacci(x-1) + fibonacci(x-2);
+   }
+  }
+};
+
+
+tabhair fibonacci(6)

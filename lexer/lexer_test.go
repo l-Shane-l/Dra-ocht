@@ -7,45 +7,49 @@ import (
 )
 
 func TestNextToken(t *testing.T) {
-	input := `bosca cuig = 5;
-bosca deich = 10;
+	input := `let five = 5;
+let ten = 10;
 
-bosca cuir = fm(x, y) {
+let add = fn(x, y) {
   x + y;
 };
 
-bosca toradh = cuir(cuig, deich);
+let result = add(five, ten);
 !-/*5;
 5 < 10 > 5;
 
-do (5 < 10) {
-	tabhair ceart;
-} eile {
-	tabhair falsa;
+if (5 < 10) {
+	return true;
+} else {
+	return false;
 }
 
 10 == 10;
 10 != 9;
+"foobar"
+"foo bar"
+[1, 2];
+{"foo": "bar"}
 `
 
 	tests := []struct {
 		expectedType    token.TokenType
 		expectedLiteral string
 	}{
-		{token.BOSCA, "bosca"},
-		{token.IDENT, "cuig"},
+		{token.LET, "let"},
+		{token.IDENT, "five"},
 		{token.ASSIGN, "="},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
-		{token.BOSCA, "bosca"},
-		{token.IDENT, "deich"},
+		{token.LET, "let"},
+		{token.IDENT, "ten"},
 		{token.ASSIGN, "="},
 		{token.INT, "10"},
 		{token.SEMICOLON, ";"},
-		{token.BOSCA, "bosca"},
-		{token.IDENT, "cuir"},
+		{token.LET, "let"},
+		{token.IDENT, "add"},
 		{token.ASSIGN, "="},
-		{token.FEIDHM, "fm"},
+		{token.FUNCTION, "fn"},
 		{token.LPAREN, "("},
 		{token.IDENT, "x"},
 		{token.COMMA, ","},
@@ -58,14 +62,14 @@ do (5 < 10) {
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.SEMICOLON, ";"},
-		{token.BOSCA, "bosca"},
-		{token.IDENT, "toradh"},
+		{token.LET, "let"},
+		{token.IDENT, "result"},
 		{token.ASSIGN, "="},
-		{token.IDENT, "cuir"},
+		{token.IDENT, "add"},
 		{token.LPAREN, "("},
-		{token.IDENT, "cuig"},
+		{token.IDENT, "five"},
 		{token.COMMA, ","},
-		{token.IDENT, "deich"},
+		{token.IDENT, "ten"},
 		{token.RPAREN, ")"},
 		{token.SEMICOLON, ";"},
 		{token.BANG, "!"},
@@ -80,21 +84,21 @@ do (5 < 10) {
 		{token.GT, ">"},
 		{token.INT, "5"},
 		{token.SEMICOLON, ";"},
-		{token.DO, "do"},
+		{token.IF, "if"},
 		{token.LPAREN, "("},
 		{token.INT, "5"},
 		{token.LT, "<"},
 		{token.INT, "10"},
 		{token.RPAREN, ")"},
 		{token.LBRACE, "{"},
-		{token.TABHAIR, "tabhair"},
-		{token.CEART, "ceart"},
+		{token.RETURN, "return"},
+		{token.TRUE, "true"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
-		{token.EILE, "eile"},
+		{token.ELSE, "else"},
 		{token.LBRACE, "{"},
-		{token.TABHAIR, "tabhair"},
-		{token.FALSA, "falsa"},
+		{token.RETURN, "return"},
+		{token.FALSE, "false"},
 		{token.SEMICOLON, ";"},
 		{token.RBRACE, "}"},
 		{token.INT, "10"},
@@ -105,6 +109,19 @@ do (5 < 10) {
 		{token.NOT_EQ, "!="},
 		{token.INT, "9"},
 		{token.SEMICOLON, ";"},
+		{token.STRING, "foobar"},
+		{token.STRING, "foo bar"},
+		{token.LBRACKET, "["},
+		{token.INT, "1"},
+		{token.COMMA, ","},
+		{token.INT, "2"},
+		{token.RBRACKET, "]"},
+		{token.SEMICOLON, ";"},
+		{token.LBRACE, "{"},
+		{token.STRING, "foo"},
+		{token.COLON, ":"},
+		{token.STRING, "bar"},
+		{token.RBRACE, "}"},
 		{token.EOF, ""},
 	}
 

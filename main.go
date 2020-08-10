@@ -1,8 +1,8 @@
 package main
 
 import (
-	"draíocht/repl"
 	"fmt"
+	"draíocht/repl"
 	"os"
 	"os/user"
 )
@@ -12,8 +12,8 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Gia duit %s! Is é seo an teanga chláreagraithe draíochta!\n",
+	fmt.Printf("Dia duit %s! agus fáilte go teanga na gclár draíochta!\n",
 		user.Username)
-	fmt.Printf("Thig leat orduithe a chlóscríobh\n")
+	fmt.Printf("tosú ag códú\n")
 	repl.Start(os.Stdin, os.Stdout)
 }

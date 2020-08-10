@@ -7,8 +7,9 @@ const (
 	EOF     = "EOF"
 
 	// Identifiers + literals
-	IDENT = "IDENT" // add, foobar, x, y, ...
-	INT   = "INT"   // 1343456
+	IDENT  = "IDENT"  // add, foobar, x, y, ...
+	INT    = "INT"    // 1343456
+	STRING = "STRING" // "foobar"
 
 	// Operators
 	ASSIGN   = "="
@@ -27,20 +28,23 @@ const (
 	// Delimiters
 	COMMA     = ","
 	SEMICOLON = ";"
+	COLON     = ":"
 
-	LPAREN = "("
-	RPAREN = ")"
-	LBRACE = "{"
-	RBRACE = "}"
+	LPAREN   = "("
+	RPAREN   = ")"
+	LBRACE   = "{"
+	RBRACE   = "}"
+	LBRACKET = "["
+	RBRACKET = "]"
 
 	// Keywords
-	FEIDHM = "FEIDHM"
-	BOSCA    = "BOSCA"
-	CEART     = "CEART"
-	FALSA    = "FALSA"
-	DO       = "DO"
-	EILE     = "EILE"
-	TABHAIR   = "TABHAIR"
+	FUNCTION = "FUNCTION"
+	LET      = "LET"
+	TRUE     = "TRUE"
+	FALSE    = "FALSE"
+	IF       = "IF"
+	ELSE     = "ELSE"
+	RETURN   = "RETURN"
 )
 
 type Token struct {
@@ -49,13 +53,13 @@ type Token struct {
 }
 
 var keywords = map[string]TokenType{
-	"fm":     FEIDHM,
-	"bosca":    BOSCA,
-	"ceart":   CEART,
-	"falsa":  FALSA,
-	"do":     DO,
-	"eile":   EILE,
-	"tabhair": TABHAIR,
+	"obair":     FUNCTION,
+	"seoladh":    LET,
+	"ceart":   TRUE,
+	"falsa":  FALSE,
+	"nuair":     IF,
+	"eile":   ELSE,
+	"tabhair": RETURN,
 }
 
 func LookupIdent(ident string) TokenType {
